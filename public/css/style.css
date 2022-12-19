@@ -1,0 +1,15 @@
+body.scroll{
+    overflow: hidden;
+}
+.tema{
+    background-image: url('../image/tema1.png');
+    height:50rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img{
+    width: 277px;
+	height: 276px;
+	border-radius: 100%;
+}
