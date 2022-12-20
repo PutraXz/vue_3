@@ -1,5 +1,5 @@
-<template>
+<template v-if="!isLogged">
     
-        
-        
 </template>
+
+
