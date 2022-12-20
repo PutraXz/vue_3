@@ -12,7 +12,7 @@
                     <input type="password" v-model="password" id="password" class="form-control mb-3 rounded-pill" placeholder="Password">
                     <button class="btn btn-outline-secondary form-control rounded-pill" type="submit" >Button</button>
                 </form>
-            </div>              
+            </div>
         </div>
     </div>
 </template>
@@ -28,12 +28,17 @@
                 email: '',
                 password: '',
                 error: null,
-                message: ''
+                message: '',
+                requiresAuth: false,
             }
         },
         created() {
             if (this.$route.params.message !== undefined){
                 this.message = this.$route.params.message + 'Please Login'
+            }
+            let token = localStorage.getItem('token') != null;
+            if (token){
+                this.$router.replace({name: 'User'})
             }
         },
         methods: {
@@ -42,20 +47,19 @@
                     email: this.email,
                     password: this.password
                 }).then(response => {
-                    // localStorage.setItem('user', Json.stringify(response.data.content))
+                    localStorage.setItem('user', JSON.stringify(response.data.content))
                     localStorage.setItem('token', response.data.token)
-                    
                     let loginType = response.data.content.level
-                    console.log(loginType);
+
                     if (loginType === 'user'){
-                        this.$router.push({ name: 'user' })
+                        this.$router.push({ name: 'User' })
                     }else if (loginType === 'admin'){
-                        this.$router.push({ name: 'user' })
+                        this.$router.push({ name: 'Admin' })
                     }else {
                         this.$route.push('home')
-                    } 
+                    }
 
-                    
+
                     // this.$emit('loggedIn')
                 })
                 .catch(error => {
@@ -65,4 +69,3 @@
         },
     }
 </script>
- 
