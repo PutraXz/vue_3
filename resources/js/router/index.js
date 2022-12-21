@@ -27,7 +27,9 @@ const routes = [{
     {
         path: '/user',
         name: 'User',
-        component: User,
+        components: {
+            Interface: User,
+        },
         meta: {
             requiresAuth: true,
             isUser: true

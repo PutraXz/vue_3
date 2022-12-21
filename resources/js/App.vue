@@ -18,6 +18,7 @@
        <router-view class="view four" name="Register"></router-view>
      </div>
    </div>
+   <router-view name="Interface"></router-view>
  </template>
  <style>
  .image-nav {
