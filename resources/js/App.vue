@@ -34,7 +34,7 @@
    data() {
      return {
        user: null,
-       requiresAuth: false, 
+       requiresAuth: false,
      };
    },
    mounted() {
@@ -66,6 +66,5 @@
    },
  };
  </script>
- 
- 
- 
+
+
