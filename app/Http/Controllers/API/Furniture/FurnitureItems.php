@@ -11,6 +11,8 @@ class FurnitureItems extends Controller
     public function __invoke(StoreUploadRequest $request)
     {
         try {
+            // $filename = time().'.'.$request->file->getClientOriginalName();
+            // $request->file->move(public_path('image/Items'), $filename);
             ModelsFurnitureItems::create($request->toArray());
                  return response()->json([
                     'success' => true,

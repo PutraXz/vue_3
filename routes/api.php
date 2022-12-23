@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\Furniture\FurnitureItems;
+use App\Http\Controllers\API\Furniture\ShowFurniture;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('store', FurnitureItems::class);
+Route::post('/store', FurnitureItems::class);
+Route::get('show', ShowFurniture::class);
