@@ -24,9 +24,9 @@ use Illuminate\Support\Facades\Auth;
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/{any}', function () {
-//     return view('vue.index');
-//     })->where("any",".*");
-// // Route::get('/invit', function () {
-// //     return view('test.index');
-// // });    
+Route::get('/{any}', function () {
+    return view('vue.index');
+    })->where("any",".*");
+// Route::get('/invit', function () {
+//     return view('test.index');
+// });

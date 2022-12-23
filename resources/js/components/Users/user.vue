@@ -11,11 +11,11 @@
             <div class="col-md-9 col-9">
                 <div class="furniture-items">
                     <div class="row p-0 m-0">
-                        <div class="col-md-3 mx-auto d-block" v-for="(furniture, index) in paginated" :key="index">
+                        <div class="col-md-3 col-sm-6 d-flex" v-for="(furniture, index) in paginated" :key="index">
                             <div class="card mb-4" style="width: 203px;height:216px" >
                                 <div class="card-body">
-                                    <img :src="furniture.image" alt="">
-                                   
+                                    <img :src="furniture.image" alt="" class="card-img-top img-fluid">
+
                                     <p class="card-text" >{{ furniture.name }}</p>
                                 </div>
                             </div>
