@@ -20,19 +20,6 @@
                                 </div>
                             </div>
                         </div>
-                        <nav class="" role="navigation" aria-label="pagination">
-                            <ul class="list-group">
-                                <li class="">
-                                    <button @click="prev"> prev </button>
-                                </li>
-                                <li>
-                                    <span>{{ current }}</span>
-                                </li>
-                                <li>
-                                    <button @click="next()">next</button>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>

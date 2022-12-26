@@ -10,7 +10,7 @@ use App\Models\User;
 class ShowFurniture extends Controller
 {
     public function __invoke(){
-       $items = User::paginate(3);
+       $items = FurnitureItems::paginate(16);
        return response()->json([
         'Items' => $items,
        ]);
