@@ -28,11 +28,18 @@
         };
     },
     methods: {
+        onChange(e){
+            let test = e.target.files[0]
+            console.log(test)
+            this.file = e.target.files[0]
+            this.fileName = this.file.name
+
+        },
         FormFurniture(e) {
             e.preventDefault();
             console.log('submit ditekan');
             let formData = new FormData()
-            formData.append('image', this.image)
+            formData.append('file', this.file)
 
             _.each(this.formData, (value, key) =>{
                 formData.append(key, value)
@@ -42,18 +49,17 @@
             };
             axios.post('api/store', formData, config)
             .then(response =>{
-                this.success = response.data.success;
+                this.$router.push({name: 'Login'})
+                this.success = response.data;
+                console.log(this.success)
             })
             .catch(err => {
-                this.output = err;
+                this.output = console.log(err);
             });
         },
-        onChange(e){
-            console.log(e.target.files[0])
-            this.file = e.target.files[0]
-            this.fileName = this.file.name
 
-        },
+    },
+    mounted: function(){
     },
    };
 

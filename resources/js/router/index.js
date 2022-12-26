@@ -4,13 +4,13 @@ import PageLeft from '../components/PageLeft.vue';
 import Navbar from '../components/Navbar.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
-import User from '../components/Users/user.vue';
+import HomeFurniture from '../components/Users/HomeFurniture.vue';
 import Admin from '../components/Admin/admin.vue';
+
 const routes = [{
         path: '/',
         name: 'Login',
         components: {
-            default: Navbar,
             Login: Login,
             PageLeft: PageLeft
         }
@@ -28,7 +28,7 @@ const routes = [{
         path: '/user',
         name: 'User',
         components: {
-            Interface: User,
+            Interface: HomeFurniture,
         },
         meta: {
             requiresAuth: true,
