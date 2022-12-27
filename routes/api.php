@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\Furniture\DetailFurniture;
 use App\Http\Controllers\API\Furniture\FurnitureItems;
 use App\Http\Controllers\API\Furniture\ShowFurniture;
 
@@ -24,3 +25,4 @@ Route::post('/register', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/store', FurnitureItems::class);
 Route::get('show', ShowFurniture::class);
+Route::get('/show/{slug}', DetailFurniture::class);

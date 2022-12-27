@@ -25,7 +25,7 @@ class StoreUploadRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:50',
-            'file' => 'required'
+            'file' => 'required',
             // 'price' => 'required',
             // 'image' => 'required',
             // 'description' => 'required',

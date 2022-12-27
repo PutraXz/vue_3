@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory, useRoute } from 'vue-router';
-import Hello from '../components/Hello.vue';
 import PageLeft from '../components/PageLeft.vue';
 import Navbar from '../components/Navbar.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
 import HomeFurniture from '../components/Users/HomeFurniture.vue';
 import Admin from '../components/Admin/admin.vue';
-
+import Detail from '../components/Users/Detail.vue';
 const routes = [{
         path: '/',
         name: 'Login',
@@ -22,6 +21,15 @@ const routes = [{
             default: Navbar,
             PageLeft: PageLeft,
             Register: Register
+        }
+    },
+    {
+        path: '/detail/:slug',
+        name: 'Detail',
+        component: Detail,
+        meta: {
+            requiresAuth: true,
+            isUser: true
         }
     },
     {

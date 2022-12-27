@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API\Furniture;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUploadRequest;
 use App\Models\FurnitureItems as ModelsFurnitureItems;
@@ -15,7 +14,8 @@ class FurnitureItems extends Controller
             $request->file->move(public_path('image/Items'), $filename);
             $reqEnd = $request->toArray();
             $reqEnd['file'] = $filename;
-            $furniture = ModelsFurnitureItems::create($reqEnd);
+            $reqEnd['slug'] = str_slug($request->title);
+            ModelsFurnitureItems::create($reqEnd);
                  return response()->json([
                     'success' => true,
                     'message' => 'berhasil upload' . $request->status,

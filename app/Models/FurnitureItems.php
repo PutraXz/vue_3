@@ -10,5 +10,5 @@ class FurnitureItems extends Model
     use HasFactory;
     protected $table = 'furniture_items';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'file'];
+    protected $fillable = ['title', 'file', 'slug'];
 }

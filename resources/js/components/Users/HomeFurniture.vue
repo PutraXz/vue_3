@@ -16,12 +16,15 @@
                                 <div class="card-body">
                                     <img v-bind:src="'/image/Items/' + post.file" class="card-img-top img-fluid"/> 
                                     <p class="card-text" >{{ post.title  }}</p>
+                                    <p>{{ post.id }}</p>
+                                    <router-link class="stretched-link" @click="itemDetail(post.slug)" :to="{name: 'Detail', params: {slug: post.slug} }">Detail</router-link>
+                                    <!-- <button class="stretched-link" @click="itemDetail(post.id)" ></button> -->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="">
-                        <Bootstrap5Pagination class="ms-5 m-0" :data="laravelData" :align="center" @pagination-change-page="getResults" />
+                        <div class="">
+                            <Bootstrap5Pagination class="" :data="laravelData"  @pagination-change-page="getResults" style="float:left;position: relative;left:40%"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,12 +50,15 @@
 <script >
 import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
     export default{
+        props: ['laravelData'],
+
         components: {
             Bootstrap5Pagination
         },
         data() {
             return {
-                laravelData: {}
+                laravelData: {},
+                detail: {},
             };
         },
         mounted() {
@@ -62,9 +68,14 @@ import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
             async getResults(page=1){
                 await axios.get(`/api/show?page=${page}`).then(({data})=>{
                     this.laravelData = data.Items
-                    console.log(data.Items.data[0]);
                 }).catch(({ response })=>{
                     console.error(response)
+                })
+            },
+            itemDetail(slug){
+                axios.get(`/api/show/${slug}`)
+                .then(response =>{
+                    this.detail = response.data
                 })
             }
         },
