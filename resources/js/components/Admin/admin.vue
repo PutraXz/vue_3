@@ -1,66 +1,55 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-            <form @submit="FormFurniture" enctype="multipart/form-data">
-                <label for="">Title</label>
-                <input type="text" v-model="formData.title">
-                <label for="">Image Product</label>
-                <input type="file" ref="file" v-on:change="onChange">
-                <button class="btn btn-primary" >Upload</button>
-            </form>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+  
+          <div v-for="cat in categoryList">
+            <input type="checkbox" :id="cat" :value="cat" v-model="categories">
+            <label :for="cat">{{cat}}</label>
+          </div>
 
-            </div>
+   
         </div>
+        <div class="col">
+          <strong>Items in chosen category(s)</strong>
+  
+          <ul>
+            <li v-for="item in selectedItems"> category: {{item.category}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
-</template>
-<script>
-   export default {
-    data() {
+  </template>
+  
+  <script>
+    export default {
+      name: 'Checkbox',
+      data() {
         return {
-            formData:{
-                title: ''
-            },
-            file: '',
-            fileName: '',
-            success: '',
-            output: ''
+          categoryList: ['Living Room','Batman','Kitchen', 'Bathroom'],
+          categories: [],
+          items: [],
         };
-    },
-    methods: {
-        onChange(e){
-            let test = e.target.files[0]
-            console.log(test)
-            this.file = e.target.files[0]
-            this.fileName = this.file.name
-
+      },
+      computed: {
+        selectedItems: function () {
+          let cats = this.categories;
+          return this.items.filter(function (item) {
+            return -1 !== _.indexOf(cats, item.category);
+          });
         },
-        FormFurniture(e) {
-            e.preventDefault();
-            console.log('submit ditekan');
-            let formData = new FormData()
-            formData.append('file', this.file)
-
-            _.each(this.formData, (value, key) =>{
-                formData.append(key, value)
-            })
-            const config = {
-                headers : { 'content-type': 'multipart/form-data' }
-            };
-            axios.post('api/store', formData, config)
-            .then(response =>{
-                this.$router.push({name: 'Login'})
-                this.success = response.data;
-                console.log(this.success)
-            })
-            .catch(err => {
-                this.output = console.log(err);
-            });
-        },
-
-    },
-    mounted: function(){
-    },
-   };
-
-</script>
+      },
+      mounted(){
+        this.getResult();
+      },
+      methods: {
+         getResult(){
+           axios.get('api/show')
+             .then(res =>{
+                 this.items = res.data.Items.data
+                 console.log(res.data.Items.data);
+             })
+         },
+      }
+    };
+  </script>

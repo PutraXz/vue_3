@@ -10,9 +10,13 @@
        </div>
      </div>
    </nav>
+   <div class="container">
+    <div class="row">
+      <router-view class="view one"></router-view>
+    </div>
+   </div>
    <div class="container-fluid p-0 m-0">
      <div class="row m-0">
-       <router-view class="view one"></router-view>
        <router-view class="view two" name="PageLeft"></router-view>
        <router-view class="view three" name="Login"></router-view>
        <router-view class="view four" name="Register"></router-view>

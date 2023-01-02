@@ -30,7 +30,8 @@ const routes = [{
         meta: {
             requiresAuth: true,
             isUser: true
-        }
+        },
+        props: true
     },
     {
         path: '/user',

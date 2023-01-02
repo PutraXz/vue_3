@@ -50,8 +50,6 @@
 <script >
 import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
     export default{
-        props: ['laravelData'],
-
         components: {
             Bootstrap5Pagination
         },

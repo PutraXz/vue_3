@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('furniture_items', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
+            $table->float('price');
+            $table->text('description'); 
+            $table->string('category', 25);
             $table->string('file', 250);
             $table->timestamps();
         });

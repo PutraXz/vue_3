@@ -14,5 +14,6 @@
     @vite('resources/js/app.js')
 
     <script src="https://unpkg.com/laravel-vue-pagination@2.3.1/dist/laravel-vue-pagination.umd.min.js"></script>
+
 </body>
 </html>
