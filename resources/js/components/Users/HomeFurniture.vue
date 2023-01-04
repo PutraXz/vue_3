@@ -4,21 +4,22 @@
             <div class="col-md-3 col-2">
                 <div class="category-items">
                     <div class="list-category mx-auto d-block">
-
+                    <ul>
+                        <li v-for="category in categorys">
+                            <input type="checkbox" v-model="checkedCategorys" v-on:click="filterJobs" v-bind:value="category" />  {{category}}
+                        </li> 
+                    </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-9 col-9">
                 <div class="furniture-items">
                     <div class="row p-0 m-0">
-                        <div class="col-md-3 col-sm-6 d-flex" v-for="post in laravelData.data" :key="post.id">
+                        <div class="col-md-3 col-sm-6 d-flex" v-for="item in filteredJobs">
                             <div class="card mb-4" style="width: 203px;height:216px" >
                                 <div class="card-body">
-                                    <img v-bind:src="'/image/Items/' + post.file" class="card-img-top img-fluid"/> 
-                                    <p class="card-text" >{{ post.title  }}</p>
-                                    <p>{{ post.id }}</p>
-                                    <router-link class="stretched-link" @click="itemDetail(post.slug)" :to="{name: 'Detail', params: {slug: post.slug} }">Detail</router-link>
-                                    <!-- <button class="stretched-link" @click="itemDetail(post.id)" ></button> -->
+                                    <img :src="'/image/Items/' + item.file" alt="" class="card-img-top img-fluid">
+                                    <router-link class="stretched-link router" @click="itemDetail(item.slug)" :to="{name: 'Detail', params: {slug: item.slug} }" >{{ item.title }}</router-link>
                                 </div>
                             </div>
                         </div>
@@ -43,10 +44,12 @@
     .card{
         border-radius: 20px;
     }
-
+    .router {
+        color: black;
+        text-decoration: none;
+    }
 
 </style>
-
 <script >
 import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
     export default{
@@ -57,7 +60,19 @@ import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
             return {
                 laravelData: {},
                 detail: {},
+                items: [],
+                categorys: ['Living Room','Bed Room','Kitchen', 'Bathroom'],
+                jobs: null,
+                checkedCategorys: []
             };
+        },
+        computed: {
+            filteredJobs(){
+                if (!this.checkedCategorys.length)
+                return this.items
+
+                return this.items.filter(j => this.checkedCategorys.includes(j.category))
+            }
         },
         mounted() {
             this.getResults();
@@ -65,6 +80,7 @@ import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
         methods: {
             async getResults(page=1){
                 await axios.get(`/api/show?page=${page}`).then(({data})=>{
+                    this.items = data.Items.data
                     this.laravelData = data.Items
                 }).catch(({ response })=>{
                     console.error(response)
@@ -77,6 +93,12 @@ import { Bootstrap5Pagination  } from 'laravel-vue-pagination';
                 })
             }
         },
-
+        filters: {
+            capitalize: function (value) {
+            if (!value) return '';
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+            }
+        }
     }
 </script>
