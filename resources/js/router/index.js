@@ -6,6 +6,7 @@ import Register from '../components/Register.vue';
 import HomeFurniture from '../components/Users/HomeFurniture.vue';
 import Admin from '../components/Admin/admin.vue';
 import Detail from '../components/Users/Detail.vue';
+import ShowFurniture from '../components/Admin/showFurniture.vue';
 const routes = [{
         path: '/',
         name: 'Login',
@@ -52,7 +53,16 @@ const routes = [{
             requiresAuth: true,
             isAdmin: true
         }
-    }
+    },
+    {
+        path: '/admin/data/furniture',
+        name: 'dataFurniture',
+        component: ShowFurniture,
+        meta: {
+            requiresAuth: true,
+            isAdmin: true
+        },
+    },
 ];
 const router = createRouter({
     history: createWebHistory(),

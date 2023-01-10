@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\API\Furniture;
+namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\FurnitureItems;
 use Illuminate\Http\Request;
 
-class DetailFurniture extends Controller
+class DeleteFurniture extends Controller
 {
     public function __invoke($slug)
     {
         try {
-           $content =  FurnitureItems::where('slug', $slug)->firstOrFail();
+            FurnitureItems::where('slug', $slug)->delete();
             return response()->json([
-                'content' => $content,
+                'message' => 'success'
             ]);
         } catch (\Throwable $th) {
             return response()->json([
-                'code' => 500,
+                'message' => 'failed'
             ]);
         }
     }

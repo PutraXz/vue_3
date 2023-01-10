@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API\Furniture;
+namespace App\Http\Controllers\API\User;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
+use App\Models\FurnitureItems;
 class DetailFurniture extends Controller
 {
     public function __invoke($slug)
